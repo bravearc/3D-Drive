@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{EE4C43C9-19D6-7F6F-9F63-BDCEB05EDFCC}</ProjectGuid>
+    <ProjectGuid>{49381169-3BBA-31EF-600B-08FC04646C1C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>spine-csharp</AssemblyName>

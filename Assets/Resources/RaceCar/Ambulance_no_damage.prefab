@@ -117,9 +117,9 @@ Transform:
   - {fileID: 7361720348214759050}
   - {fileID: 1841735265126089521}
   - {fileID: 3617752132882000265}
-  - {fileID: 3178914684547856001}
   - {fileID: 1066059988049695995}
   - {fileID: 8949132116127536197}
+  - {fileID: 3178914684547856001}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &8281753797393019939
@@ -2002,7 +2002,7 @@ GameObject:
   - component: {fileID: 1066059988049695995}
   - component: {fileID: 9002815686572656867}
   m_Layer: 0
-  m_Name: Camera
+  m_Name: MainCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
