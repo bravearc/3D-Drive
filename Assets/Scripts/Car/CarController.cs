@@ -6,13 +6,14 @@ public class CarController : MonoBehaviour
 {
     public List<AxleInfo> axleinfos;
     Rigidbody _carRigid;
-    float maxMotorTorque; 
+    public float maxMotorTorque; 
     float maxBrakeTorque; 
     float maxSteeringAngle;
     public float steering;
     public float _carSpeed;
 
-    float MAX_SPEED;
+    float _power;
+    public float MAX_SPEED;
     int _gear;
 
     public float _sideBreak = 1;
@@ -44,36 +45,42 @@ public class CarController : MonoBehaviour
 
     void Init()
     {
-
-        maxBrakeTorque = 400f;
+        maxBrakeTorque = 2000f;
         maxSteeringAngle = 40f;
+        _power = 50;
     }
 
     public void Update()
     {
-        GearCount();
+        if (_playUI.isEngine && _playUI.isBelt)
+        {
+            GearCount();
+        }
     }
 
     public void FixedUpdate()
     {
         _carSpeed = _carRigid.velocity.magnitude;
-        Debug.Log(_carSpeed);
         CarMove();
     }
 
     private void CarMove()
     {
-        float motor = 0;
+        float motor = 0f;
         if (_playUI.isEngine && _playUI.isBelt)
         {
-            motor = maxMotorTorque * Input.GetAxisRaw("Accelerator") * 1.5f * _sideBreak;
+            motor = maxMotorTorque * Input.GetAxisRaw("Accelerator") * _power * _sideBreak;
+            if(_carSpeed > MAX_SPEED)
+            {
+                motor = 0f;
+            }
         }
-        float brake = maxBrakeTorque * Input.GetAxisRaw("Brake") * 70;
+        float brake = maxBrakeTorque * Input.GetAxisRaw("Brake") * _power;
 
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
         {
 
-            steering = maxSteeringAngle * Input.GetAxisRaw("Horizontal") * 0.5f;
+            steering = maxSteeringAngle * Input.GetAxisRaw("Horizontal") / 3f;
         }
         else
         {
@@ -100,9 +107,12 @@ public class CarController : MonoBehaviour
     }
     void GearCount()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow) )
         {
-            ReturnTorque(1);
+            if(_carSpeed > MAX_SPEED * 0.7f || _gear < 1)
+            {
+                ReturnTorque(1);
+            }
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
@@ -118,13 +128,24 @@ public class CarController : MonoBehaviour
         _gear = _gear > 5 ? 5 : _gear;
 
         maxMotorTorque = _gear switch {
-            5 => 25,
-            4 => 20,
-            3 => 15,
-            2 => 10,
-            1 => 5,
+            5 => 5,
+            4 => 5,
+            3 => 4,
+            2 => 3,
+            1 => 2,
             0 => 0,
-            -1 => -5,
+            -1 => -1,
+            _ => throw new System.NotImplementedException()};
+
+        MAX_SPEED = maxMotorTorque switch
+        {
+            5 => 11,
+            4 => 9,
+            3 => 7,
+            2 => 5,
+            1 => 3,
+            0 => 3,
+            -1 => 5,
             _ => throw new System.NotImplementedException()};
 
         _playUI.MoveGaer(_gear);
