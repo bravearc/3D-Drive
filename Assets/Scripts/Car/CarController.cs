@@ -14,6 +14,7 @@ public class CarController : MonoBehaviour
 
     float _power;
     public float MAX_SPEED;
+    public float _rpm;
     int _gear;
 
     public float _sideBreak = 1;
@@ -92,6 +93,7 @@ public class CarController : MonoBehaviour
             {
                 axle.leftWheel.steerAngle = steering;
                 axle.rightWheel.steerAngle = steering;
+                _rpm = axle.leftWheel.rpm;
             }
 
             if (axle.motor)
@@ -109,7 +111,7 @@ public class CarController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.UpArrow) )
         {
-            if(_carSpeed > MAX_SPEED * 0.7f || _gear < 1)
+            if(_rpm > MAX_SPEED * 0.7f || _gear < 1)
             {
                 ReturnTorque(1);
             }
@@ -128,21 +130,21 @@ public class CarController : MonoBehaviour
         _gear = _gear > 5 ? 5 : _gear;
 
         maxMotorTorque = _gear switch {
-            5 => 5,
-            4 => 5,
-            3 => 4,
-            2 => 3,
+            5 => 10,
+            4 => 8,
+            3 => 6,
+            2 => 4,
             1 => 2,
             0 => 0,
-            -1 => -1,
+            -1 => -2,
             _ => throw new System.NotImplementedException()};
 
         MAX_SPEED = maxMotorTorque switch
         {
-            5 => 11,
-            4 => 9,
-            3 => 7,
-            2 => 5,
+            5 => 20,
+            4 => 15,
+            3 => 10,
+            2 => 6,
             1 => 3,
             0 => 3,
             -1 => 5,
@@ -157,7 +159,7 @@ public class CarController : MonoBehaviour
         {
             return;
         }
-
+        
         Transform visualWheel = collider.transform.GetChild(0);
 
         Vector3 position;
