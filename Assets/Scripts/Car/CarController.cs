@@ -71,7 +71,7 @@ public class CarController : MonoBehaviour
         if (_playUI.isEngine && _playUI.isBelt)
         {
             motor = maxMotorTorque * Input.GetAxisRaw("Accelerator") * _power * _sideBreak;
-            if(_carSpeed > MAX_SPEED)
+            if(_rpm > MAX_SPEED)
             {
                 motor = 0f;
             }
@@ -111,23 +111,25 @@ public class CarController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.UpArrow) )
         {
-            if(_rpm > MAX_SPEED * 0.7f || _gear < 1)
+            if(_rpm > MAX_SPEED * 0.8f || _gear < 1)
             {
-                ReturnTorque(1);
+                TorqueChack(1);
             }
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            ReturnTorque(-1);
+            TorqueChack(-1);
         }
 
     }
 
-    private void ReturnTorque(int i)
+    int _minGaer = -1;
+    int _maxGaer = 5;
+    private void TorqueChack(int i)
     {
         _gear += i;
-        _gear = _gear < -1 ? -1 : _gear;
-        _gear = _gear > 5 ? 5 : _gear;
+        _gear = _gear < _minGaer ? _minGaer : _gear;
+        _gear = _gear > _maxGaer ? _maxGaer : _gear;
 
         maxMotorTorque = _gear switch {
             5 => 10,
@@ -139,15 +141,15 @@ public class CarController : MonoBehaviour
             -1 => -2,
             _ => throw new System.NotImplementedException()};
 
-        MAX_SPEED = maxMotorTorque switch
+        MAX_SPEED = _gear switch
         {
-            5 => 20,
-            4 => 15,
-            3 => 10,
-            2 => 6,
-            1 => 3,
-            0 => 3,
-            -1 => 5,
+            5 => 250,
+            4 => 180,
+            3 => 100,
+            2 => 60,
+            1 => 30,
+            0 => 0,
+            -1 => -50,
             _ => throw new System.NotImplementedException()};
 
         _playUI.MoveGaer(_gear);

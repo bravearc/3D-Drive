@@ -402,8 +402,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axleinfos: []
+  maxMotorTorque: 0
   steering: 0
   _carSpeed: 0
+  MAX_SPEED: 0
+  _rpm: 0
   _sideBreak: 1
 --- !u!114 &531826491
 MonoBehaviour:

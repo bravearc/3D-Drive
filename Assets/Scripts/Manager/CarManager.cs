@@ -41,6 +41,8 @@ public class CarManager : MonoBehaviour
         jsonDatas.Add(Define.CarData.Truck);
         jsonDatas.Add(Define.CarData.TouristBus);
         jsonDatas.Add(Define.CarData.G7_1200);
+        jsonDatas.Add(Define.CarData.Mercedes_Benz);
+        jsonDatas.Add(Define.CarData.Hovertank);
     }
 
     public void CarChange(int i)

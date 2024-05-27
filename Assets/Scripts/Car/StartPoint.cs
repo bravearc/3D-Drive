@@ -18,14 +18,6 @@ public class StartPoint : MonoBehaviour
             _car = Resources.Load<GameObject>(path);
 
             Instantiate(_car, transform);
-
-            if(Manager.Car.CarName == Define.CarData.Truck.CarName)
-            {
-                path = string.Concat(Define.Path.RaceCar, "Trailer");
-                _car = Resources.Load<GameObject>(path);
-                Instantiate(_car, transform);
-            }
-
         }
 
         else
