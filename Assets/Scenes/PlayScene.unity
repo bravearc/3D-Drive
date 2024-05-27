@@ -403,12 +403,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   axleinfos: []
   maxMotorTorque: 0
-  maxBrakeTorque: 0
-  maxSteeringAngle: 0
-  MAX_SPEED: 0
-  _gear: 0
-  _sideBreak: 1
   steering: 0
+  _carSpeed: 0
+  MAX_SPEED: 0
+  _rpm: 0
+  _sideBreak: 1
 --- !u!114 &531826491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1178,7 +1177,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8db9b6be15ade8548940077904b6a879, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d36fe186ab6252a4ba6017c850aa9f32, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1301,7 +1300,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 052ad1f94a1d8944bba32cda02fa5fde, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 02a3dc12298c3f546ad5c5dd0730ce7e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2775,7 +2774,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2ceabb1d71ac6424cb3adee2fc9a1f43, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0fbf05867af271d4b98a4914e6ae0887, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2839,7 +2838,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a925b7b1471d350429a3cdd294a25856, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c4fb16b68481f0d43b589f3f460daa8a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

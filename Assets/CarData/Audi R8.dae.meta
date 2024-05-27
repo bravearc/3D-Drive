@@ -3,7 +3,82 @@ guid: 92c0b75be35fc5e4796a75edd7c361c8
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Black_001
+    second: {fileID: 239378781582670930, guid: f714692924da63e458d6b2aae8753542, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "F\u0131r\xE7alanm\u0131\u015F_Aliminyum"
+    second: {fileID: 239378781582670930, guid: f714692924da63e458d6b2aae8753542, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glass_002
+    second: {fileID: 239378781582670930, guid: f714692924da63e458d6b2aae8753542, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Karbon_001
+    second: {fileID: 2375753074539628203, guid: ddd9d874e820fc9488f5c12530735f4c, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Kau\xE7uk"
+    second: {fileID: 2100000, guid: 5ef7a7b6ecc946f40af0624dcf1064fe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Led_Light_001
+    second: {fileID: 2100000, guid: 5ef7a7b6ecc946f40af0624dcf1064fe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Light_000
+    second: {fileID: 2100000, guid: 5ef7a7b6ecc946f40af0624dcf1064fe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_005
+    second: {fileID: 2100000, guid: 5ef7a7b6ecc946f40af0624dcf1064fe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_006
+    second: {fileID: 2100000, guid: 5ef7a7b6ecc946f40af0624dcf1064fe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_008
+    second: {fileID: 2100000, guid: 5ef7a7b6ecc946f40af0624dcf1064fe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_010
+    second: {fileID: 2100000, guid: 5ef7a7b6ecc946f40af0624dcf1064fe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_013
+    second: {fileID: 2100000, guid: 5ef7a7b6ecc946f40af0624dcf1064fe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Paint
+    second: {fileID: 2100000, guid: 5ef7a7b6ecc946f40af0624dcf1064fe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Paint_001
+    second: {fileID: 2100000, guid: 5ef7a7b6ecc946f40af0624dcf1064fe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rubber
+    second: {fileID: 2100000, guid: 5ef7a7b6ecc946f40af0624dcf1064fe, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

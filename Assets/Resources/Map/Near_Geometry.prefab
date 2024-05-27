@@ -538,7 +538,7 @@ GameObject:
   - component: {fileID: 6586231027907322140}
   m_Layer: 0
   m_Name: Near_Geometry
-  m_TagString: Untagged
+  m_TagString: Map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295

@@ -6,13 +6,15 @@ public class CarController : MonoBehaviour
 {
     public List<AxleInfo> axleinfos;
     Rigidbody _carRigid;
-    float maxMotorTorque; 
+    public float maxMotorTorque; 
     float maxBrakeTorque; 
     float maxSteeringAngle;
     public float steering;
     public float _carSpeed;
 
-    float MAX_SPEED;
+    float _power;
+    public float MAX_SPEED;
+    public float _rpm;
     int _gear;
 
     public float _sideBreak = 1;
@@ -44,36 +46,42 @@ public class CarController : MonoBehaviour
 
     void Init()
     {
-
-        maxBrakeTorque = 400f;
+        maxBrakeTorque = 2000f;
         maxSteeringAngle = 40f;
+        _power = 50;
     }
 
     public void Update()
     {
-        GearCount();
+        if (_playUI.isEngine && _playUI.isBelt)
+        {
+            GearCount();
+        }
     }
 
     public void FixedUpdate()
     {
         _carSpeed = _carRigid.velocity.magnitude;
-        Debug.Log(_carSpeed);
         CarMove();
     }
 
     private void CarMove()
     {
-        float motor = 0;
+        float motor = 0f;
         if (_playUI.isEngine && _playUI.isBelt)
         {
-            motor = maxMotorTorque * Input.GetAxisRaw("Accelerator") * 1.5f * _sideBreak;
+            motor = maxMotorTorque * Input.GetAxisRaw("Accelerator") * _power * _sideBreak;
+            if(_rpm > MAX_SPEED)
+            {
+                motor = 0f;
+            }
         }
-        float brake = maxBrakeTorque * Input.GetAxisRaw("Brake") * 70;
+        float brake = maxBrakeTorque * Input.GetAxisRaw("Brake") * _power;
 
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
         {
 
-            steering = maxSteeringAngle * Input.GetAxisRaw("Horizontal") * 0.5f;
+            steering = maxSteeringAngle * Input.GetAxisRaw("Horizontal") / 3f;
         }
         else
         {
@@ -85,6 +93,7 @@ public class CarController : MonoBehaviour
             {
                 axle.leftWheel.steerAngle = steering;
                 axle.rightWheel.steerAngle = steering;
+                _rpm = axle.leftWheel.rpm;
             }
 
             if (axle.motor)
@@ -100,31 +109,47 @@ public class CarController : MonoBehaviour
     }
     void GearCount()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow) )
         {
-            ReturnTorque(1);
+            if(_rpm > MAX_SPEED * 0.8f || _gear < 1)
+            {
+                TorqueChack(1);
+            }
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            ReturnTorque(-1);
+            TorqueChack(-1);
         }
 
     }
 
-    private void ReturnTorque(int i)
+    int _minGaer = -1;
+    int _maxGaer = 5;
+    private void TorqueChack(int i)
     {
         _gear += i;
-        _gear = _gear < -1 ? -1 : _gear;
-        _gear = _gear > 5 ? 5 : _gear;
+        _gear = _gear < _minGaer ? _minGaer : _gear;
+        _gear = _gear > _maxGaer ? _maxGaer : _gear;
 
         maxMotorTorque = _gear switch {
-            5 => 25,
-            4 => 20,
-            3 => 15,
-            2 => 10,
-            1 => 5,
+            5 => 10,
+            4 => 8,
+            3 => 6,
+            2 => 4,
+            1 => 2,
             0 => 0,
-            -1 => -5,
+            -1 => -2,
+            _ => throw new System.NotImplementedException()};
+
+        MAX_SPEED = _gear switch
+        {
+            5 => 250,
+            4 => 180,
+            3 => 100,
+            2 => 60,
+            1 => 30,
+            0 => 0,
+            -1 => -50,
             _ => throw new System.NotImplementedException()};
 
         _playUI.MoveGaer(_gear);
@@ -136,7 +161,7 @@ public class CarController : MonoBehaviour
         {
             return;
         }
-
+        
         Transform visualWheel = collider.transform.GetChild(0);
 
         Vector3 position;

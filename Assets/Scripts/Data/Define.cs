@@ -43,6 +43,16 @@ public static class Define
             100,
             "G7_1200_Engine",
             "G7_1200_Drive");
+        public static JsonCarData Mercedes_Benz = new JsonCarData(
+            "Mercedes_Benz",
+            100,
+            "G7_1200_Engine",
+            "G7_1200_Drive");
+        public static JsonCarData Hovertank = new JsonCarData(
+            "Hovertank",
+            100,
+            "G7_1200_Engine",
+            "G7_1200_Drive");
     }
 
     public class MapData

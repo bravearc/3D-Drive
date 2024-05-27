@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{1B93C1E7-9A34-31A1-39B1-9D5275AA98A8}</ProjectGuid>
+    <ProjectGuid>{DB5A80F9-D15A-BB29-D073-7645AECD89BF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -1124,19 +1124,19 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="spine-csharp.csproj">
-      <Project>{EE4C43C9-19D6-7F6F-9F63-BDCEB05EDFCC}</Project>
+      <Project>{49381169-3BBA-31EF-600B-08FC04646C1C}</Project>
       <Name>spine-csharp</Name>
     </ProjectReference>
     <ProjectReference Include="UniRx.csproj">
-      <Project>{33CD6AA5-8F60-56C8-6EFA-65DB8E1951B0}</Project>
+      <Project>{A331BB66-84FD-861B-5109-D6076FF00794}</Project>
       <Name>UniRx</Name>
     </ProjectReference>
     <ProjectReference Include="spine-unity.csproj">
-      <Project>{ECB977A6-9CF7-42C1-E7E1-8050E5121FE2}</Project>
+      <Project>{4CF35524-C216-5BE0-36EA-3E86842371C3}</Project>
       <Name>spine-unity</Name>
     </ProjectReference>
     <ProjectReference Include="spine-unity-editor.csproj">
-      <Project>{5A596573-A555-6571-F34E-EECAB933F8B2}</Project>
+      <Project>{FAC8CE82-92FC-EBA0-7C5F-E2A9A5B5381D}</Project>
       <Name>spine-unity-editor</Name>
     </ProjectReference>
   </ItemGroup>
