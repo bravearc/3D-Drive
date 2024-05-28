@@ -6,18 +6,18 @@ public class CarController : MonoBehaviour
 {
     public List<AxleInfo> axleinfos;
     Rigidbody _carRigid;
-    public float maxMotorTorque; 
+    float maxMotorTorque; 
     float maxBrakeTorque; 
     float maxSteeringAngle;
-    public float steering;
-    public float _carSpeed;
+    float steering;
+    public float _sideBreak = 1;
 
     float _power;
-    public float MAX_SPEED;
-    public float _rpm;
+    float MAX_SPEED;
+    float _rpm;
     int _gear;
+    bool _wifer;
 
-    public float _sideBreak = 1;
 
     private PlayUI _playUI;
 
@@ -61,7 +61,6 @@ public class CarController : MonoBehaviour
 
     public void FixedUpdate()
     {
-        _carSpeed = _carRigid.velocity.magnitude;
         CarMove();
     }
 
@@ -149,7 +148,7 @@ public class CarController : MonoBehaviour
             2 => 60,
             1 => 30,
             0 => 0,
-            -1 => -50,
+            -1 => 50,
             _ => throw new System.NotImplementedException()};
 
         _playUI.MoveGaer(_gear);

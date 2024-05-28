@@ -24,6 +24,9 @@ public class PlayUI : MonoBehaviour
     Button _foglightBT;
     Button _highBeamBT;
     Button _sideBreakBT;
+    Button _wiferBT;
+
+    public Animator _animator;
 
     Light _light;
 
@@ -42,6 +45,7 @@ public class PlayUI : MonoBehaviour
     bool isDanger;
     bool isHighBeam;
     bool isFogLight;
+    bool isWifer;
 
     private void Awake()
     {
@@ -50,7 +54,10 @@ public class PlayUI : MonoBehaviour
         _carController = _startPoint.GetComponent<CarController>();
 
     }
-
+    private void Update()
+    {
+        LightKey();
+    }
     IEnumerator StartInit()
     {
         while (_startPoint.transform.childCount < 1)
@@ -76,6 +83,10 @@ public class PlayUI : MonoBehaviour
         _foglight = _lights.Find("FogLight").gameObject;
         _highBeam = _lights.Find("HighBeam").gameObject;
         _carController = _startPoint.transform.GetChild(0).GetComponent<CarController>();
+        if(_startPoint.transform.GetChild(0).Find("Wifer") != null)
+        {
+            _animator = _startPoint.transform.GetChild(0).Find("Wifer").GetComponent<Animator>();   
+        }
 
     }
     void SetButton()
@@ -87,6 +98,7 @@ public class PlayUI : MonoBehaviour
         _belt = tr.Find("Belt").GetComponent<Button>();
         _camera = tr.Find("Camera").GetComponent<Button>();
         _sun = tr.Find("Sun").GetComponent<Button>();
+        _wiferBT = tr.Find("Wifer").GetComponent<Button>();
 
         tr = transform.Find("Lights");
         _leftturnBT = tr.Find("LeftTurn").GetComponent<Button>();
@@ -111,7 +123,8 @@ public class PlayUI : MonoBehaviour
             _dangerBT.OnClickAsObservable().Select(_ => _dangerBT),
             _foglightBT.OnClickAsObservable().Select(_ => _foglightBT),
             _highBeamBT.OnClickAsObservable().Select(_ => _highBeamBT),
-            _sideBreakBT.OnClickAsObservable().Select(_ => _sideBreakBT));
+            _sideBreakBT.OnClickAsObservable().Select(_ => _sideBreakBT),
+            _wiferBT.OnClickAsObservable().Select(_ => _wiferBT));
 
         bt.Subscribe(button => LightButton(button)).AddTo(this);
 
@@ -123,6 +136,22 @@ public class PlayUI : MonoBehaviour
         _startPoint.transform.GetChild(0).rotation = Quaternion.Euler(0f, 180f, 0f);
     }
 
+    void LightKey()
+    {
+        if(Input.GetKeyDown(KeyCode.A)) { ButtonCheak(ref isLeftturn, _leftturnBT); LightCheak(isLeftturn, _leftturn); }
+        if(Input.GetKeyDown(KeyCode.S)) { ButtonCheak(ref isDanger, _dangerBT); LightCheak(isDanger); }
+        if(Input.GetKeyDown(KeyCode.D)) { ButtonCheak(ref isRightturn, _rightturnBT); LightCheak(isRightturn, _rightturn); }
+        if(Input.GetKeyDown(KeyCode.Z)) { ButtonCheak(ref isFogLight, _foglightBT); LightCheak(isFogLight, _foglight); }
+        if(Input.GetKeyDown(KeyCode.X)) { ButtonCheak(ref isHighBeam, _highBeamBT); LightCheak(isHighBeam, _highBeam); }
+        if(Input.GetKeyDown(KeyCode.C)) { ButtonCheak(ref isWifer, _wiferBT); WiferStart(isWifer); }
+        if(Input.GetKeyDown(KeyCode.Q)) { ButtonCheak(ref isEngine, _engine); Manager.Sound.StartTheEngine(); }
+        if(Input.GetKeyDown(KeyCode.W)) { ButtonCheak(ref isBelt, _belt); }
+        if(Input.GetKeyDown(KeyCode.E)) { }
+        if(Input.GetKeyDown(KeyCode.Escape)) { }
+        if(Input.GetKeyDown(KeyCode.Escape)) { }
+        if(Input.GetKeyDown(KeyCode.Escape)) { }
+        if(Input.GetKeyDown(KeyCode.Escape)) { }
+    }
     void LightButton(Button bt)
     {
         GameObject go = gameObject;
@@ -174,8 +203,20 @@ public class PlayUI : MonoBehaviour
                 ButtonCheak(ref isSideBreak, _sideBreakBT);
                 SideBreakChack();
                 break;
+            case "Wifer":
+                ButtonCheak(ref isWifer, _wiferBT); 
+                _animator.SetBool("Switch", isWifer);
+                break;
             default:
                 throw new ArgumentException("Invalid button name");
+        }
+    }
+
+    void WiferStart(bool boo)
+    {
+        if(_animator != null)
+        {
+        _animator.SetBool("Switch", boo);
         }
     }
 
